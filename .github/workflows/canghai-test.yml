@@ -107,4 +107,4 @@ jobs:
         tag: OpenWrt_${{ env.PACKAGED_OUTPUTDATE }}
         artifacts: /openwrt/bin/*
         allowUpdates: true
-        token: ${{ secrets.X86_TOKEN }}
+        token: ${{ secrets.SEARIY }}
