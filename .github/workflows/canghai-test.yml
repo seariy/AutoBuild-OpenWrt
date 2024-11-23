@@ -101,10 +101,8 @@ jobs:
         name: OpenWrt
         path: openwrt/bin
 
-    - name: 发布固件
-      uses: ncipollo/release-action@v1
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-        tag: OpenWrt_${{ env.PACKAGED_OUTPUTDATE }}
-        artifacts: /openwrt/bin/*
-        allowUpdates: true
-        token: ${{ secrets.SEARIY }}
+          tag_name: v${{ env.FILE_DATE }}
+          files: openwrt/bin/targets/x86/64/openwrt.zip
