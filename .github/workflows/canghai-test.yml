@@ -98,11 +98,11 @@ jobs:
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt
+        name: OpenWrt_x86_64
         path: openwrt/bin
 
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-          tag_name: v${{ env.FILE_DATE }}
-          files: openwrt/bin/targets/x86/64/openwrt.zip
+          tag_name: OpenWrt_x86_64${{ env.FILE_DATE }}
+          files: openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.img.gz
