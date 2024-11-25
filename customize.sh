@@ -9,8 +9,8 @@
 #sed -i 's/192.168.1.1/192.168.10.100/g' openwrt/package/base-files/files/bin/config_generate
 
 ########
-NET="package/base-files/luci2/bin/config_generate"
-ZZZ="package/lean/default-settings/files/zzz-default-settings"
+NET="openwrt/package/base-files/luci2/bin/config_generate"
+ZZZ="openwrt/package/lean/default-settings/files/zzz-default-settings"
 
 ########
 sed -i 's#192.168.1.1#192.168.10.100#g' $NET               # 定制默认IP
