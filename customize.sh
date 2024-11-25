@@ -45,10 +45,5 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' openwrt/package/lean/default-se
 # 修改默认主机名
 #sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-Seariy'/g" openwrt/package/base-files/files/bin/config_generate
 
-# iStore插件
-echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
-./scripts/feeds update istore
-./scripts/feeds install -d y -p istore luci-app-store
-
 # 添加订阅源
 #sed -i '$a src-git istore https://github.com/linkease/istore.git;main' feeds.conf.default
