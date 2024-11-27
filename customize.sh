@@ -11,7 +11,7 @@ NET="openwrt/package/base-files/luci2/bin/config_generate"
 ZZZ="openwrt/package/lean/default-settings/files/zzz-default-settings"
 
 ########
-sed -i 's#192.168.1.1#192.168.10.100#g' $NET               # 定制默认IP
+sed -i 's#192.168.1.1#192.168.10.254#g' $NET               # 定制默认IP
 sed -i 's#LEDE#OpenWrt#g' $NET                             # 修改默认名称为OpenWrt
 sed -i "s/LEDE /Seariy build /g" $ZZZ                      # 增加自己个性名称
 
