@@ -1,4 +1,5 @@
-# AutoBuild-OpenWrt   Actions云编译脚本
+#   GitHub Actions AutoBuild-OpenWrt
+#   使用 GitHub Actions 编译 OpenWrt 
 
 #     Openwrt 旁路由固件  内置 ShadowSocksR Plus+ 插件
 
