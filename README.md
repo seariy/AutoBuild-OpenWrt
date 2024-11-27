@@ -1,6 +1,6 @@
 # AutoBuild-OpenWrt   Actions云编译脚本
 
-#     Openwrt旁路由固件 
+#     Openwrt 旁路由固件  内置 ShadowSocksR Plus+ 插件
 
 ##    后台地址：192.168.10.254
 
