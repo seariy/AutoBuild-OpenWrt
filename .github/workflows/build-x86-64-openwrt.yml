@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         target: [x86-64]
-        branch: [23.05]
+        branch: [18.06, 23.05]
 
     env:
       CONFIG_FILE: configs/${{ matrix.target }}.config
@@ -37,7 +37,10 @@ jobs:
 
     - name: Set Compile Source Code
       run: |
-        if [ ${{ matrix.branch }} == '23.05' ]; then
+        if [ ${{ matrix.branch }} == '18.06' ]; then
+          echo "REPO_URL=https://github.com/coolsnowwolf/lede" >> $GITHUB_ENV
+          echo "REPO_BRANCH=master" >> $GITHUB_ENV
+        elif [ ${{ matrix.branch }} == '23.05' ]; then
           echo "REPO_URL=https://github.com/immortalwrt/immortalwrt" >> $GITHUB_ENV
           echo "REPO_BRANCH=openwrt-23.05" >> $GITHUB_ENV
         fi
@@ -114,11 +117,12 @@ jobs:
         make defconfig >/dev/null 2>&1
         SOURCE_REPO=$(echo $REPO_URL | awk -F '/' '{print $(NF)}')
         echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
-        DEVICE_TARGET=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
+        echo "LITE_BRANCH=${REPO_BRANCH#*-}" >>$GITHUB_ENV
+        TARGET_NAME=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
+        SUBTARGET_NAME=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
+        DEVICE_TARGET=$TARGET_NAME-$SUBTARGET_NAME
         echo "DEVICE_TARGET=$DEVICE_TARGET" >> $GITHUB_ENV
-        DEVICE_SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
-        echo "DEVICE_SUBTARGET=$DEVICE_SUBTARGET" >> $GITHUB_ENV
-        KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$DEVICE_TARGET/Makefile)
+        KERNEL=$(grep -oP 'KERNEL_PATCHVER:=\K[^ ]+' target/linux/$TARGET_NAME/Makefile)
         KERNEL_VERSION=$(sed -n 2p include/kernel-$KERNEL | awk '{print $1}' | awk -F '-' '{print $2}')
         echo "KERNEL_VERSION=$KERNEL_VERSION" >> $GITHUB_ENV
 
@@ -183,10 +187,11 @@ jobs:
       run: |
         cd $OPENWRT_PATH/bin/targets/*/*
         cat config.buildinfo
-        cp $OPENWRT_PATH/.config build.config
-        mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
-        tar -zcf packages.tar.gz packages
-        rm -rf packages feeds.buildinfo version.buildinfo sha256sums *.json *.bin *rootfs.img.gz
+        FILE_NAME=$SOURCE_REPO-$LITE_BRANCH-$DEVICE_TARGET
+        cp -rf $OPENWRT_PATH/bin/packages/* packages
+        tar -zcf $FILE_NAME-packages.tar.gz packages
+        sleep 3s && rm -rf packages sha256sums *.buildinfo *.manifest *.bin *.json *rootfs.img.gz
+        sed '/^$/d' $OPENWRT_PATH/.config >> $FILE_NAME-config.txt
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
 
     - name: Upload Firmware To Artifact
@@ -207,5 +212,5 @@ jobs:
         token: ${{ secrets.SEARIY_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
-          #########-- 📒 -- 💻 -- ⚽ -- 💝 -- 🌐 -- 🔑 -- #########
+          #########-- 📒 -- 💻 -- ⚽ --[固件源码](${{ env.REPO_URL }})更新记录-- 💝 -- 🌐 -- 🔑 -- #########
 
