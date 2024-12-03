@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         target: [x86-64]
-        branch: [18.06, 23.05]
+        branch: [lede, immortalwrt]
 
     env:
       CONFIG_FILE: configs/${{ matrix.target }}.config
@@ -37,10 +37,10 @@ jobs:
 
     - name: Set Compile Source Code
       run: |
-        if [ ${{ matrix.branch }} == '18.06' ]; then
+        if [ ${{ matrix.branch }} == 'lede' ]; then
           echo "REPO_URL=https://github.com/coolsnowwolf/lede" >> $GITHUB_ENV
           echo "REPO_BRANCH=master" >> $GITHUB_ENV
-        elif [ ${{ matrix.branch }} == '23.05' ]; then
+        elif [ ${{ matrix.branch }} == 'immortalwrt' ]; then
           echo "REPO_URL=https://github.com/immortalwrt/immortalwrt" >> $GITHUB_ENV
           echo "REPO_BRANCH=openwrt-23.05" >> $GITHUB_ENV
         fi
