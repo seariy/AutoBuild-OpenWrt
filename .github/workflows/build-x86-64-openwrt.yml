@@ -3,7 +3,7 @@ name: build x86/64 openwrt
 on:
   workflow_dispatch:
   schedule:
-    - cron: 00 14 * * 5
+    - cron: 00 16 * * *
   watch:
     types: started
 
