@@ -183,6 +183,20 @@ sed -i 's#LEDE#OpenWrt#g' package/base-files/files/bin/config_generate
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.10.254/g' package/base-files/files/bin/config_generate
 
+######## 修改默认 网关、DNS########
+ZZZ="package/base-files/files/bin/config_generate"
+########
+cat >> $ZZZ <<-EOF
+# 设置旁路由模式
+uci set network.lan.gateway='192.168.10.1'                     # 旁路由设置 IPv4 网关
+uci set network.lan.dns='223.5.5.5 8.8.8.8'            # 旁路由设置 DNS(多个DNS要用空格分开)
+uci set dhcp.lan.ignore='1'                                  # 旁路由关闭DHCP功能
+uci delete network.lan.type                                  # 旁路由桥接模式-禁用
+EOF
+# 修改退出命令到最后
+sed -i '/exit 0/d' $ZZZ && echo "exit 0" >> $ZZZ
+##################################
+
 # 更改默认 Shell 为 zsh
 # sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
