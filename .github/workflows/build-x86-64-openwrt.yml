@@ -29,7 +29,7 @@ jobs:
     env:
       CONFIG_FILE: configs/${{ matrix.target }}.config
       DIY_SCRIPT: diy-${{ matrix.branch }}.sh
-      RELEASE_TAG: ${{ matrix.target }}-${{ matrix.branch }}
+      RELEASE_TAG: ${{ matrix.target }}-${{ matrix.branch }}-${{ env.DATE }}
 
     steps:
     - name: Checkout
