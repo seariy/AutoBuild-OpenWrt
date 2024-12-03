@@ -177,6 +177,9 @@ git_clone 18.06 https://github.com/jerrykuku/luci-theme-argon
 # 开始加载个人设置
 BEGIN_TIME=$(date '+%H:%M:%S')
 
+# 修改默认主机名 OpenWrt
+sed -i 's#LEDE#OpenWrt#g' package/base-files/files/bin/config_generate
+
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.10.254/g' package/base-files/files/bin/config_generate
 
