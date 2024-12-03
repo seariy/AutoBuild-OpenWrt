@@ -112,6 +112,7 @@ jobs:
 
     - name: Generate Variables
       run: |
+        echo "build_tag=OpenWrt_${TAGS_NAME}_$(date +"%Y.%m")" >> ${GITHUB_OUTPUT}
         cp $CONFIG_FILE $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         make defconfig >/dev/null 2>&1
@@ -208,7 +209,7 @@ jobs:
         name: OpenWRT_${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}  ${{ env.DATE }}
         allowUpdates: true
         removeArtifacts: true
-        tag: OpenWrt_${{ env.RELEASE_TAG }}
+        tag: ${{ steps.codes.outputs.build_tag }}
         token: ${{ secrets.SEARIY_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
