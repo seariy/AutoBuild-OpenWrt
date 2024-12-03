@@ -206,7 +206,7 @@ jobs:
       uses: ncipollo/release-action@main
       if: steps.compile.conclusion == 'success' && env.UPLOAD_RELEASE == 'true'
       with:
-        name: OpenWRT_${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}  ${{ env.DATE }}
+        name: OpenWRT_${{ matrix.branch }}_${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}  ${{ env.FILE_DATE }}
         allowUpdates: true
         removeArtifacts: true
         tag: ${{ env.BUILD_TAG }}
