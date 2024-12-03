@@ -214,8 +214,6 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/base-files/files/etc/sh
 
 # 固件版本前面添加个性名字
 #sed -i "s/ImmortalWrt/Seariy0 build /g" package/base-files/files/etc/openwrt_release
-sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
-echo "DISTRIB_DESCRIPTION='Seariy R$(date +%y.%m.%d)'" >> /etc/openwrt_release
 
 # 更改 Argon 主题背景
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
