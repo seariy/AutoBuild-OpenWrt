@@ -208,7 +208,7 @@ jobs:
         name: OpenWRT_${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}  ${{ env.DATE }}
         allowUpdates: true
         removeArtifacts: true
-        tag: build ${{ matrix.branch }}-${{ env.DATE }}
+        tag: OpenWrt_${{ env.RELEASE_TAG }}
         token: ${{ secrets.SEARIY_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
