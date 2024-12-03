@@ -117,7 +117,8 @@ jobs:
         make defconfig >/dev/null 2>&1
         SOURCE_REPO=$(echo $REPO_URL | awk -F '/' '{print $(NF)}')
         echo "SOURCE_REPO=$SOURCE_REPO" >> $GITHUB_ENV
-        echo "build_tag=OpenWrt_${{ matrix.branch }}_$(date +"%Y.%m.%d")" >> ${GITHUB_OUTPUT}
+        echo "BUILD_TAG=OpenWrt_${{ matrix.branch }}_$(date +"%Y.%m.%d")" >> ${GITHUB_OUTPUT}
+        echo "BUILD_TAG=$BUILD_TAG" >> $GITHUB_ENV
         echo "LITE_BRANCH=${REPO_BRANCH#*-}" >>$GITHUB_ENV
         TARGET_NAME=$(cat .config | grep CONFIG_TARGET_BOARD | awk -F '"' '{print $2}')
         SUBTARGET_NAME=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
@@ -209,7 +210,7 @@ jobs:
         name: OpenWRT_${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}  ${{ env.DATE }}
         allowUpdates: true
         removeArtifacts: true
-        tag: ${{ steps.codes.outputs.build_tag }}
+        tag: ${{ env.BUILD_TAG }}
         token: ${{ secrets.SEARIY_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
