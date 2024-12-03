@@ -30,7 +30,6 @@ jobs:
       CONFIG_FILE: configs/${{ matrix.target }}.config
       DIY_SCRIPT: diy-${{ matrix.branch }}.sh
       RELEASE_TAG: ${{ matrix.target }}-${{ matrix.branch }}
-      Upload_TAG: ${{ matrix.target }}-${{ matrix.branch }}-${{ env.DATE }}
       
     steps:
     - name: Checkout
@@ -209,7 +208,7 @@ jobs:
         name: OpenWRT_${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}  ${{ env.DATE }}
         allowUpdates: true
         removeArtifacts: true
-        tag: OpenWrt_${{ env.Upload_TAG }}
+        tag: OpenWrt_${{ env.RELEASE_TAG }}
         token: ${{ secrets.SEARIY_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
