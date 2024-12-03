@@ -202,13 +202,13 @@ jobs:
         path: ${{ env.FIRMWARE_PATH }}
 
     - name: Upload Firmware To Release
-      if: steps.compile.conclusion == 'success' && env.UPLOAD_RELEASE == 'true'
       uses: ncipollo/release-action@main
+      if: steps.compile.conclusion == 'success' && env.UPLOAD_RELEASE == 'true'
       with:
         name: OpenWRT_${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}  ${{ env.DATE }}
         allowUpdates: true
         removeArtifacts: true
-        tag: ${{ steps.codes.outputs.build_tag }}
+        tag: ${{ env.SOURCE_REPO }}-${{ env.DATE }}
         token: ${{ secrets.SEARIY_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
