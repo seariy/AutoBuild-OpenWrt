@@ -183,6 +183,9 @@ clone_all https://github.com/brvphoenix/wrtbwmon
 # 开始加载个人设置
 BEGIN_TIME=$(date '+%H:%M:%S')
 
+# 修改默认主机名 OpenWrt
+sed -i 's#ImmortalWrt#OpenWrt#g' package/base-files/files/bin/config_generate
+
 # 修改默认 IP
 sed -i 's/192.168.1.1/192.168.10.254/g' package/base-files/files/bin/config_generate
 
@@ -199,9 +202,6 @@ EOF
 # 修改退出命令到最后
 sed -i '/exit 0/d' $ZZZ && echo "exit 0" >> $ZZZ
 ##################################
-
-# 修改默认主机名 OpenWrt
-sed -i 's#ImmortalWrt#OpenWrt#g' package/base-files/files/bin/config_generate
 
 # 更改默认 Shell 为 zsh
 # sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
