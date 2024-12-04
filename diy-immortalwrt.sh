@@ -245,7 +245,7 @@ sed -i 's/\"终端\"/\"TTYD 终端\"/g' feeds/luci/applications/luci-app-ttyd/po
 ## 设置 nlbwmon 独立菜单
 #sed -i 's/services\/nlbw/nlbw/g; /path/s/admin\///g' feeds/luci/applications/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
 #sed -i 's/services\///g' feeds/luci/applications/luci-app-nlbwmon/htdocs/luci-static/resources/view/nlbw/config.js
-#status 加载个人设置
+status 加载个人设置
 
 # 开始下载openchash运行内核
 #[ $CLASH_KERNEL ] && {
