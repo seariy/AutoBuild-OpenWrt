@@ -213,7 +213,7 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/base-files/files/etc/shadow
 
 # 固件版本前面添加个性名字
-#sed -i "s/ImmortalWrt/Seariy0 build /g" package/base-files/files/etc/openwrt_release
+sed -i 's#ImmortalWrt#OpenWrt#g' /etc/openwrt_release
 
 # 更改 Argon 主题背景
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
@@ -236,11 +236,11 @@ done
 # find $destination_dir/luci-theme-*/ -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
 
 # 调整 netdata 到 状态 菜单
-sed -i 's/system/status/g' feeds/luci/applications/luci-app-netdata/luasrc/controller/netdata.lua
+# sed -i 's/system/status/g' feeds/luci/applications/luci-app-netdata/luasrc/controller/netdata.lua
 
 # 更改 ttyd 顺序和名称
-sed -i '3a \		"order": 10,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
-sed -i 's/\"终端\"/\"TTYD 终端\"/g' feeds/luci/applications/luci-app-ttyd/po/zh_Hans/ttyd.po
+# sed -i '3a \		"order": 10,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+# sed -i 's/\"终端\"/\"TTYD 终端\"/g' feeds/luci/applications/luci-app-ttyd/po/zh_Hans/ttyd.po
 
 ## 设置 nlbwmon 独立菜单
 #sed -i 's/services\/nlbw/nlbw/g; /path/s/admin\///g' feeds/luci/applications/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
