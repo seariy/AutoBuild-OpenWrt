@@ -138,21 +138,21 @@ destination_dir="package/A"
 color cy "添加&替换插件"
 
 # 添加额外插件
-git_clone https://github.com/kongfl888/luci-app-adguardhome
-clone_all https://github.com/sirpdboy/luci-app-ddns-go
+# git_clone https://github.com/kongfl888/luci-app-adguardhome
+# clone_all https://github.com/sirpdboy/luci-app-ddns-go
 
 # nclone_all lua https://github.com/sbwml/luci-app-alist
-clone_all v5-lua https://github.com/sbwml/luci-app-mosdns
+# clone_all v5-lua https://github.com/sbwml/luci-app-mosdns
 # git_clone https://github.com/sbwml/packages_lang_golang golang
 
-git_clone lede https://github.com/pymumu/luci-app-smartdns
-git_clone https://github.com/pymumu/openwrt-smartdns smartdns
+# git_clone lede https://github.com/pymumu/luci-app-smartdns
+# git_clone https://github.com/pymumu/openwrt-smartdns smartdns
 
 # git_clone https://github.com/ximiTech/luci-app-msd_lite
 # git_clone https://github.com/ximiTech/msd_lite
 
-clone_all https://github.com/linkease/istore-ui
-clone_all https://github.com/linkease/istore luci
+# clone_all https://github.com/linkease/istore-ui
+# clone_all https://github.com/linkease/istore luci
 
 # 科学上网插件
 clone_all https://github.com/fw876/helloworld
@@ -162,10 +162,9 @@ clone_all https://github.com/xiaorouji/openwrt-passwall
 # clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 
 # Themes
-# git_clone 18.06 https://github.com/kiddin9/luci-theme-edge
-git_clone 18.06 https://github.com/jerrykuku/luci-theme-argon
-# git_clone 18.06 https://github.com/jerrykuku/luci-app-argon-config
-# clone_dir https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom luci-theme-infinityfreedom-ng
+# git_clone https://github.com/kiddin9/luci-theme-edge
+git_clone https://github.com/jerrykuku/luci-theme-argon
+# git_clone https://github.com/jerrykuku/luci-app-argon-confi
 # clone_dir https://github.com/haiibo/packages luci-theme-opentomcat
 
 # 晶晨宝盒
@@ -177,7 +176,7 @@ git_clone 18.06 https://github.com/jerrykuku/luci-theme-argon
 # 开始加载个人设置
 BEGIN_TIME=$(date '+%H:%M:%S')
 
-# 修改默认主机名 OpenWrt
+# 修改默认hostname OpenWrt
 sed -i 's#LEDE#OpenWrt#g' package/base-files/files/bin/config_generate
 
 # 修改默认IP
@@ -204,7 +203,7 @@ sed -i '/exit 0/d' $ZZZ && echo "exit 0" >> $ZZZ
 sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
 # 设置 root 用户密码为空
-# sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings 
+sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/base-files/files/etc/shadow
 
 # 更改 Argon 主题背景
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg feeds/luci/themes/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
@@ -262,12 +261,12 @@ $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
 status 下载zsh终端工具
 
 # 开始下载adguardhome运行内核
-[ $CLASH_KERNEL ] && {
-    BEGIN_TIME=$(date '+%H:%M:%S')
-    chmod +x $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh
-    $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
-    status 下载adguardhome运行内核
-}
+#[ $CLASH_KERNEL ] && {
+#    BEGIN_TIME=$(date '+%H:%M:%S')
+#    chmod +x $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh
+#    $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
+#    status 下载adguardhome运行内核
+#}
 
 # 开始更新配置文件
 BEGIN_TIME=$(date '+%H:%M:%S')
