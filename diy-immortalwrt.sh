@@ -256,18 +256,18 @@ status 加载个人设置
 # 　}
 
 # 开始下载zsh终端工具
-BEGIN_TIME=$(date '+%H:%M:%S')
-chmod +x $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
-$GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
-status 下载zsh终端工具
+# BEGIN_TIME=$(date '+%H:%M:%S')
+# chmod +x $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
+# $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
+# status 下载zsh终端工具
 
 # 开始下载adguardhome运行内核
-[ $CLASH_KERNEL ] && {
-    BEGIN_TIME=$(date '+%H:%M:%S')
-    chmod +x $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh
-    $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
-    status 下载adguardhome运行内核
-}
+# [ $CLASH_KERNEL ] && {
+#     BEGIN_TIME=$(date '+%H:%M:%S')
+#     chmod +x $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh
+#     $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
+#     status 下载adguardhome运行内核
+# }
 
 # 开始更新配置文件
 BEGIN_TIME=$(date '+%H:%M:%S')
