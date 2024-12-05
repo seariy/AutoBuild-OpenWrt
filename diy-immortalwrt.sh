@@ -143,7 +143,7 @@ clone_dir openwrt-23.05 https://github.com/coolsnowwolf/luci luci-app-adguardhom
 clone_all https://github.com/fw876/helloworld
 clone_all https://github.com/xiaorouji/openwrt-passwall-packages
 clone_all https://github.com/xiaorouji/openwrt-passwall
-clone_all https://github.com/xiaorouji/openwrt-passwall2
+#clone_all https://github.com/xiaorouji/openwrt-passwall2
 #clone_dir https://github.com/vernesong/OpenClash luci-app-openclash
 
 # Themes
@@ -164,7 +164,7 @@ git_clone https://github.com/jerrykuku/luci-theme-argon
 # clone_all https://github.com/morytyann/OpenWrt-mihomo
 
 # MosDNS
-clone_all https://github.com/sbwml/luci-app-mosdns
+# clone_all https://github.com/sbwml/luci-app-mosdns
 
 # Alist
 # clone_all https://github.com/sbwml/luci-app-alist
@@ -177,8 +177,8 @@ git_clone https://github.com/sbwml/packages_lang_golang golang
 # clone_all https://github.com/linkease/istore luci
 
 # Wrtbwmon
-clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
-clone_all https://github.com/brvphoenix/wrtbwmon
+#clone_all https://github.com/brvphoenix/luci-app-wrtbwmon
+#clone_all https://github.com/brvphoenix/wrtbwmon
 
 # 开始加载个人设置
 BEGIN_TIME=$(date '+%H:%M:%S')
