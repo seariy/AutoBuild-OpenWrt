@@ -15,4 +15,4 @@
 
 
 
-########https://github.com/haiibo/build-openwrt
+########此固件与 [OpenWrt](https://github.com/haiibo/build-openwrt)  项目固件一致########
