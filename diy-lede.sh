@@ -258,10 +258,10 @@ status 加载个人设置
 # }
 
 # 开始下载zsh终端工具
-BEGIN_TIME=$(date '+%H:%M:%S')
-chmod +x $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
-$GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
-status 下载zsh终端工具
+# BEGIN_TIME=$(date '+%H:%M:%S')
+# chmod +x $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
+# $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
+# status 下载zsh终端工具
 
 # 开始下载adguardhome运行内核
 #[ $CLASH_KERNEL ] && {
